@@ -1,0 +1,22 @@
+{
+  "name": "cobol",
+  "version": "1.0.0",
+  "description": "Sample automation project",
+  "main": "index.js",
+  "scripts": {
+    "submitJob": "node ./submitJobAndVerifySuccess"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZunoRick/COBOL-practices.git"
+  },
+  "keywords": [
+    "COBOL"
+  ],
+  "author": "Ricardo Zuno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZunoRick/COBOL-practices/issues"
+  },
+  "homepage": "https://github.com/ZunoRick/COBOL-practices#readme"
+}
