@@ -15,6 +15,7 @@
        CONFIGURATION SECTION.
        SOURCE-COMPUTER.           IBM-3083.
        OBJECT-COMPUTER.           IBM-3083.
+       
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
            SELECT EMPLEADOS ASSIGN TO "C:\COBOL\Archivos\EMPLEADO.TXT".
@@ -90,6 +91,7 @@
            05 FILLER              PIC X(04)    VALUE SPACES.
            05 FILLER              PIC X(07)    VALUE "SALARIO".
            05 FILLER              PIC X(06)    VALUE SPACES.
+           
        01  WS-DETALLE.
            05 FILLER              PIC X(04)    VALUE SPACES.
            05 WS-DET-NUMERO       PIC ZZZZ9.

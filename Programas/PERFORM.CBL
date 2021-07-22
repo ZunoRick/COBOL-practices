@@ -34,7 +34,7 @@
 
            DISPLAY "TECLEE EL TOTAL"
            ACCEPT WS-TOTAL
-           PERFORM 020-PROCESO THRU 020-FIN
+           PERFORM 020-PROCESO THRU 020-FIN 
                    VARYING WS-CONTADOR FROM 1 BY 1
                    UNTIL   WS-CONTADOR GREATER WS-TOTAL
            DISPLAY " "
