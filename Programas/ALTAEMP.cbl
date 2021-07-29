@@ -30,14 +30,14 @@
            05 WS-NOMBRE-EMP       PIC X(20).
            05 WS-APE-PAT-EMP      PIC X(20).
            05 WS-APE-MAT-EMP      PIC X(20).
-           88 WS-DIA-NAC          VALUE 01 THRU 31.
-           88 WS-MES-NAC          VALUE 01 THRU 12.
-           88 WS-ANIO-NAC         VALUE 1961 THRU 2003.
+           05 WS-DIA-NAC          PIC 9(02).
+           05 WS-MES-NAC          PIC 9(02).
+           05 WS-ANIO-NAC         PIC 9(04).
            05 WS-DEPARTAMENTO     PIC 9(03).
            05 WS-PUESTO           PIC 9(02).
            05 WS-SALARIO          PIC 9(09).
 
-       01  SW-FIN                 PIC X(01)          VALUE SPACES.
+       01  SW-FIN                 PIC X(01)     VALUE SPACES.
 
        LINKAGE SECTION.
        01  LK-INDEX               PIC 9(04).
@@ -45,7 +45,7 @@
        PROCEDURE DIVISION USING LK-INDEX.
        010-INICIO.
            PERFORM 020-ABRE-ARCHIVOS THRU 020-FIN
-           PERFORM 030-LEE-DATOS THRU 035-FIN
+           PERFORM 030-LEE-DATOS THRU 050-FIN
                    UNTIL SW-FIN EQUAL "N"
            PERFORM 040-CIERRA-ARCHIVOS THRU 040-FIN.
            GOBACK.
@@ -77,13 +77,42 @@
            DISPLAY "PUESTO: "
            ACCEPT WS-PUESTO
            DISPLAY "SUELDO"
-           ACCEPT WS-SALARIO
+           ACCEPT WS-SALARIO.
+
+       040-VALIDA-DATOS.
+           EVALUATE WS-DIA-NAC
+           WHEN 01 THRU 31
+              CONTINUE
+           WHEN OTHER
+              DISPLAY "FORMATO DE DIA INCORRECTO."
+              DISPLAY " "
+              GO TO 030-LEE-DATOS
+           END-EVALUATE
+
+           EVALUATE WS-MES-NAC
+           WHEN 01 THRU 12
+              CONTINUE
+           WHEN OTHER
+              DISPLAY "FORMATO DE MES INCORRECTO."
+              DISPLAY " "
+              GO TO 030-LEE-DATOS
+           END-EVALUATE
+
+           EVALUATE WS-ANIO-NAC
+           WHEN 1961 THRU 2003
+              CONTINUE
+           WHEN OTHER
+              DISPLAY "FORMATO DE ANIO INCORRECTO."
+              DISPLAY " "
+              GO TO 030-LEE-DATOS
+           END-EVALUATE
+
            DISPLAY "¿REGISTRAR OTRO EMPLEADO? (Y/N): "
            ACCEPT SW-FIN.
 
-       035-ESCRIBE-DATOS.
+       050-ESCRIBE-DATOS.
            WRITE REG-EMPLEADOS FROM WS-DATOS-EMPLEADO.
-       035-FIN. EXIT.
+       050-FIN. EXIT.
 
        040-CIERRA-ARCHIVOS.
            CLOSE EMPLEADOS.
